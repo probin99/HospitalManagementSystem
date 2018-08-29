@@ -12,8 +12,9 @@ namespace HospitalManagementSystem.Controllers
     {
         HospitalManagementSystemContext db = new HospitalManagementSystemContext();
         // GET: Home
-        public ActionResult Welcome()
+        public ActionResult Index()
         {
+
             //ViewBag.Doctors = db.Registers.Where(x=>x.Role.ToString() == "Doctor").Select(x => x).Count();
             //ViewBag.Patients = db.Registers.Where(x => x.Role.ToString() == "Patient").Select(x => x).Count();
             //ViewBag.Pharmacists = db.Registers.Where(x => x.Role.ToString() == "Pharmacist").Select (x=>x).Count();
