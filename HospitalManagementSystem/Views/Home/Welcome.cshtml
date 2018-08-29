@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+}
+
+<h2 class="text-center text-secondary">Welcome</h2>
+<hr />
+@*@{
+    int doctor = ViewBag.Doctors;
+    int patient = ViewBag.Patients;
+    int pharmacist = ViewBag.Pharmacists;
+}*@
+
+@using (Html.BeginForm())
+{
+    <div class="text-justify text-dark bg-transparent">
+        <p class="mb-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat dignissim vehicula. Morbi iaculis nisi a massa pulvinar, at porttitor velit pharetra. Nulla hendrerit, sapien eu blandit cursus, nibh dui scelerisque nulla, eu dignissim urna justo sit amet libero. Aenean nec tincidunt magna. Sed in orci aliquet felis molestie luctus. Morbi hendrerit neque sed felis ultricies venenatis. Nulla ornare efficitur scelerisque. Nunc dapibus enim tristique felis fringilla commodo vel nec felis. Aliquam a luctus sapien, vitae aliquet augue.
+        </p>
+    </div>
+
+    <br />
+    <br />
+    <div class="text-center">
+        <p class="h3 text-secondary">Total System Users</p>
+        <hr />
+        @*@Html.Label("Total Number of Doctors:" + " " + @doctor.ToString(), new { @class = "form-control text-success" })
+        
+        @Html.Label("Total Number of Patients:" + " " + @patient.ToString(), new { @class = "form-control text-secondary" })
+        
+        @Html.Label("Total number of Pharmacists:" + " " + @pharmacist.ToString(), new { @class = "form-control text-info" })*@
+    </div>
+}
