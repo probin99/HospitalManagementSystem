@@ -280,18 +280,6 @@
     <Content Include="Views\Home\Welcome.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Admins\Delete.cshtml" />
-    <Content Include="Views\Admins\Edit.cshtml" />
-    <Content Include="Views\Admins\Index.cshtml" />
-    <Content Include="Views\Doctors\Delete.cshtml" />
-    <Content Include="Views\Doctors\Edit.cshtml" />
-    <Content Include="Views\Doctors\Index.cshtml" />
-    <Content Include="Views\Patients\Delete.cshtml" />
-    <Content Include="Views\Patients\Edit.cshtml" />
-    <Content Include="Views\Patients\Index.cshtml" />
-    <Content Include="Views\Pharmacists\Delete.cshtml" />
-    <Content Include="Views\Pharmacists\Edit.cshtml" />
-    <Content Include="Views\Pharmacists\Index.cshtml" />
     <Content Include="Views\Shared\_Layout - LoggedUser.cshtml" />
     <Content Include="Views\Logins\Index.cshtml" />
   </ItemGroup>
