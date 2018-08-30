@@ -34,14 +34,6 @@ namespace HospitalManagementSystem.Models.UserAccount
         [StringLength(15, ErrorMessage = "Must be between 5 and 15 characters", MinimumLength = 5)]
         public string Password { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Confirm Password")]
-        [Required(ErrorMessage = "Confirm Password Required")]
-        [StringLength(255, ErrorMessage = "Must be between 5 nd 255 characters", MinimumLength = 5)]
-        [DataType(DataType.Password)]
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
-
         //One to Many relationship using EF Convention
         public int RoleID { get; set; }
         public Role Role { get; set; }

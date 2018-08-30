@@ -1,51 +1,48 @@
-﻿using System;
+﻿using HospitalManagementSystem.Context;
+using HospitalManagementSystem.Models.UserAccount;
+using HospitalManagementSystem.ViewModel;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using HospitalManagementSystem.Context;
-using HospitalManagementSystem.Models.UserAccount;
 
 namespace HospitalManagementSystem.Controllers
 {
     public class RegistersController : Controller
     {
-        private HospitalManagementSystemContext db = new HospitalManagementSystemContext();
-        
+        HospitalManagementSystemContext db = new HospitalManagementSystemContext();
         [HttpGet]
-        //Get: View Register Page
-        public ActionResult Index()
+        // GET: Registers
+        public ActionResult Register()
         {
-            return View();
+            RegisterViewModel registerVM = new RegisterViewModel();
+
+            return View(registerVM);
         }
-        
+
         [HttpPost]
-        
-        public ActionResult Index([Bind(Include ="FullName,Email,Password,ConfirmPassword,Role")] User model)
+        // Post: Registers
+        public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 User register = new User()
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    Password = model.Password,
-                    ConfirmPassword = model.ConfirmPassword,
-                    Role = model.Role
+                    FirstName = model.User.FirstName,
+                    LastName = model.User.LastName,
+                    Email = model.User.Email,
+                    Password = model.User.Password,
+                    Role = model.User.Role
                 };
 
-                var query = db.Users.Where(x => x.Email.Contains(model.Email)).Select(x => x);
+                var query = db.Users.Where(x => x.Email.Contains(model.User.Email)).Select(x => x);
                 if (query.Count() == 0)
                 {
                     db.Users.Add(register);
                     db.SaveChanges();
 
-                    string selectedRole = model.Role.ToString();
+                    string selectedRole = model.User.Role.ToString();
                     //switch (selectedRole)
                     //{
                     //    case "Patient":
@@ -92,7 +89,7 @@ namespace HospitalManagementSystem.Controllers
                     //        db.SaveChanges();
                     //        return RedirectToAction("Index", "Admins");
                     //}
-                    return RedirectToAction("Index", "Logins");
+                    return RedirectToAction("Login", "Logins");
                 }
                 else
                 {
@@ -103,8 +100,9 @@ namespace HospitalManagementSystem.Controllers
             {
                 return View(model);
             }
+
         }
-        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
