@@ -11,11 +11,11 @@ namespace HospitalManagementSystem.Models.UserAccount
         [Key]
         public int RoleID { get; set; }
 
-        [Display(Name = "Role")]
-        [Required(ErrorMessage = "Select User Role")]
+        [Display(Name = "Role Name")]
+        [Required(ErrorMessage = "Role Name Required")]
         public string RoleName { get; set; }
 
         //One to Many relationship using EF Convention
-        public ICollection<User> User { get; set; }
+        public ICollection<UserAccount> User { get; set; }
     }
 }

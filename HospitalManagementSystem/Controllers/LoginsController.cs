@@ -11,26 +11,35 @@ namespace HospitalManagementSystem.Controllers
 {
     public class LoginsController : Controller
     {
-        private HospitalManagementSystemContext db = new HospitalManagementSystemContext();
         [HttpGet]
         // GET: Logins
         public ActionResult Login()
         {
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName");
             LoginViewModel model = new LoginViewModel();
             return View(model);
         }
 
         [HttpPost]
         // GET: Logins
-        public ActionResult Login([Bind(Include = "Email,Password, RoleID")]LoginViewModel user)
+        public ActionResult Login([Bind(Include = "UserName,Password")]LoginViewModel user)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                using (HospitalManagementSystemContext db = new HospitalManagementSystemContext())
+                {
+                    var getUserFromDatabase = db.Users.Single(x => x.UserName == user.UserName && x.Password == user.Password);
+                    if (getUserFromDatabase != null)
+                    {
+                        Session["UserFound"] = user.UserName;
+                        return RedirectToAction("LoggedUser");
+                    }
+                    else
+                    {
+                        ViewBag.UserNotFound = user.UserName + ""+ "is not registered in the system";
+                        return View(user);
+                    }
+                }
             }
-
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", user.RoleID);
             return View(user);
         }
     }

@@ -10,106 +10,55 @@ using System.Web.Mvc;
 namespace HospitalManagementSystem.Controllers
 {
     public class RegistersController : Controller
-    {
-        HospitalManagementSystemContext db = new HospitalManagementSystemContext();
+    {        
         [HttpGet]
         // GET: Registers
         public ActionResult Register()
         {
             RegisterViewModel registerVM = new RegisterViewModel();
-
             return View(registerVM);
         }
 
         [HttpPost]
         // Post: Registers
-        public ActionResult Register(RegisterViewModel model)
+        public ActionResult Register([Bind(Include ="FirstName,LastName,Email,MobileNumber,UserName,Password,")] RegisterViewModel account)
         {
             if (ModelState.IsValid)
             {
-                User register = new User()
+                using (HospitalManagementSystemContext db = new HospitalManagementSystemContext())
                 {
-                    FirstName = model.User.FirstName,
-                    LastName = model.User.LastName,
-                    Email = model.User.Email,
-                    Password = model.User.Password,
-                    Role = model.User.Role
-                };
-
-                var query = db.Users.Where(x => x.Email.Contains(model.User.Email)).Select(x => x);
-                if (query.Count() == 0)
-                {
-                    db.Users.Add(register);
-                    db.SaveChanges();
-
-                    string selectedRole = model.User.Role.ToString();
-                    //switch (selectedRole)
-                    //{
-                    //    case "Patient":
-                    //        Patient patient = new Patient()
-                    //        {
-                    //            Email = model.Email,
-                    //            Password = model.Password,
-                    //            Role = model.Role
-                    //        };
-                    //        db.Patients.Add(patient);
-                    //        db.SaveChanges();
-                    //        return RedirectToAction("Index", "Patients");
-
-                    //    case "Doctor":
-                    //        Doctor doctor = new Doctor()
-                    //        {
-                    //            Email = model.Email,
-                    //            Password = model.Password,
-                    //            Role = model.Role
-                    //        };
-                    //        db.Doctors.Add(doctor);
-                    //        db.SaveChanges();
-                    //        return RedirectToAction("Index", "Doctors");
-
-                    //    case "Pharmacist":
-                    //        Pharmacist pharmacist = new Pharmacist()
-                    //        {
-                    //            Email = model.Email,
-                    //            Password = model.Password,
-                    //            Role = model.Role
-                    //        };
-                    //        db.Pharmacists.Add(pharmacist);
-                    //        db.SaveChanges();
-                    //        return RedirectToAction("Index", "Pharmacists");
-
-                    //    case "Admin":
-                    //        Admin admin = new Admin()
-                    //        {
-                    //            Email = model.Email,
-                    //            Password = model.Password,
-                    //            Role = model.Role
-                    //        };
-                    //        db.Admins.Add(admin);
-                    //        db.SaveChanges();
-                    //        return RedirectToAction("Index", "Admins");
-                    //}
-                    return RedirectToAction("Login", "Logins");
-                }
-                else
-                {
-                    return View(model);
+                    var registertedUser = db.Users.Single(x => x.Email == account.User.Email);
+                    if(registertedUser == null)
+                    {
+                        UserAccount newUser = new UserAccount()
+                        {
+                            FirstName = account.User.FirstName,
+                            LastName = account.User.LastName,
+                            Email = account.User.Email,
+                            MobileNumber = account.User.MobileNumber,
+                            UserName = account.User.UserName,
+                            Password = account.User.Password
+                        };
+                        db.Users.Add(newUser);
+                        db.SaveChanges();
+                        //Redirect to login page
+                        ViewBag["RegisteredUser"] = "Congratulations " + account.User.FirstName + ", you are registered with Email: " + account.User.Email;
+                        ViewBag["EmailAreadyRegistered"] = null;
+                        return RedirectToAction("Login","Logins");
+                    }
+                    else
+                    {
+                        ViewBag["EmailAreadyRegistered"] = "Sorry, " + account.User.Email + " is already registered";
+                        ViewBag["RegisteredUser"] = null;
+                        return View(account);
+                    }
                 }
             }
             else
             {
-                return View(model);
+                return View(account);
             }
 
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -1,13 +1,35 @@
 ﻿@model HospitalManagementSystem.ViewModel.RegisterViewModel
 
+<div>
+    <button type="button" onclick="location.href='@Url.Action("Login", "Logins")'" class="btn btn-outline-success my-md-2 my-md-0" style="width:200px;">Back</button>
+</div>
 
 <h2>Register</h2>
 <hr />
 <br />
+
+@{ if (ViewBag.RegisteredUser != null)
+    {
+        var successMessage = ViewBag.RegisteredUser;
+        <div class="bg-success text-dark text-md-left">
+            <p>successMessage</p>
+        </div>
+    }
+    if (ViewBag.EmailAreadyRegistered != null)
+    {
+        var unsuccessfulMessage = ViewBag.EmailAreadyRegistered;
+        <div class="bg-danger text-dark text-md-left">
+            <p>unsuccessfulMessage</p>
+        </div>
+    }
+}
+
 @using (Html.BeginForm("Index", "Registers", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+
+
     <div class="col-md-6 mb-0">
         @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @placeholder = "First Name", @class = "form-control" } })
         @Html.ValidationMessageFor(model => model.User.FirstName, "", new { @class = "text-danger" })
@@ -29,6 +51,11 @@
         <br />
     </div>
     <div class="col-md-6 mb-0">
+        @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @placeholder = "User Name", @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
+        <br />
+    </div>
+    <div class="col-md-6 mb-0">
         @Html.EditorFor(model => model.User.Password, new { htmlAttributes = new { @placeholder = "Password", @class = "form-control" } })
         @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
         <br />
@@ -38,21 +65,8 @@
         @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
         <br />
     </div>
-    <div class="col-md-6 mb-0 form-group col-xl-12">
-        @Html.DropDownListFor(model=>model.User.Role.RoleName, new List<SelectListItem>
-            { new SelectListItem { Text = "Patient", Value = "Patient"},
-              new SelectListItem { Text = "Doctor", Value = "Doctor"},
-              new SelectListItem { Text = "Pharmacist", Value = "Pharmacist"},
-              new SelectListItem { Text = "Admin", Value = "Admin"}
-              },"Login as",new {@class = "form-control" })
-        @Html.ValidationMessageFor(model => model.User.Role.RoleName, "", new { @class = "text-danger" })
-        <br />
-    </div>
     <hr />
     <div>
         <input type="submit" value="Register" class="btn btn-outline-info my-md-2 my-md-0" style="width:200px;" />
     </div>
 }
-<div>
-    <button type="button" onclick="location.href='@Url.Action("Login", "Registers")'" class="btn btn-outline-success my-md-2 my-md-0" style="width:200px;">Back</button>
-</div>

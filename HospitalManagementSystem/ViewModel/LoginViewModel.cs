@@ -9,15 +9,13 @@ namespace HospitalManagementSystem.ViewModel
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Email Required")]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        [Display(Name = "User Name")]
+        [Required(ErrorMessage = "Username Required")]
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Password Required")]
         [DataType(DataType.Password)]
         [StringLength(15, ErrorMessage = "Must be between 5 and 15 characters", MinimumLength = 5)]
         public string Password { get; set; }
-
-        public Role Role { get; set; }
     }
 }

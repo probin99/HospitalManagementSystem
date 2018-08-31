@@ -7,7 +7,7 @@ using System.Web;
 
 namespace HospitalManagementSystem.Models.UserAccount
 {
-    public class User
+    public class UserAccount
     {
         [Key]
         public int UserID { get; set; }
@@ -25,14 +25,22 @@ namespace HospitalManagementSystem.Models.UserAccount
         public string Email { get; set; }
 
         [Display(Name = "Mobile Number")]
-        [Required(ErrorMessage = "Mobile Contact Number Required")]
+        [Required(ErrorMessage = "Mobile Number Required")]
         [DataType(DataType.PhoneNumber)]
         public int MobileNumber { get; set; }
 
+        [Required(ErrorMessage ="Username Required")]
+        [StringLength(15, ErrorMessage = "Must Be Between 5 to 15 Characters", MinimumLength = 5)]
+        public string UserName { get; set; }
+
         [Required(ErrorMessage = "Password Required")]
         [DataType(DataType.Password)]
-        [StringLength(15, ErrorMessage = "Must be between 5 and 15 characters", MinimumLength = 5)]
+        [StringLength(15, ErrorMessage = "Must Be Between 5 and 15 Characters", MinimumLength = 5)]
         public string Password { get; set; }
+        
+        [Display(Name ="User Role")]
+        [Required(ErrorMessage ="No Role Selected")]
+        public string UserRole { get; set; }
 
         //One to Many relationship using EF Convention
         public int RoleID { get; set; }

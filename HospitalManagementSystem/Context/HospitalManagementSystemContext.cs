@@ -11,7 +11,7 @@ namespace HospitalManagementSystem.Context
     public class HospitalManagementSystemContext:DbContext
     {
         //Models
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserAccount> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<ContactUs> ContactUs { get; set; }
     }

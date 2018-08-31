@@ -9,13 +9,13 @@ namespace HospitalManagementSystem.ViewModel
 {
     public class RegisterViewModel
     {
-        public User User { get; set; }
+        public UserAccount User { get; set; }
 
         [Display(Name = "Confirm Password")]
         [Required(ErrorMessage = "Confirm Password Required")]
         [StringLength(255, ErrorMessage = "Must be between 5 nd 255 characters", MinimumLength = 5)]
         [DataType(DataType.Password)]
-        [Compare("Password")]
+        [Compare(nameof(RegisterViewModel.User.Password))]
         public string ConfirmPassword { get; set; }
     }
 }
