@@ -156,9 +156,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809040628523_001.cs" />
-    <Compile Include="Migrations\201809040628523_001.Designer.cs">
-      <DependentUpon>201809040628523_001.cs</DependentUpon>
+    <Compile Include="Migrations\201809040641238_001.cs" />
+    <Compile Include="Migrations\201809040641238_001.Designer.cs">
+      <DependentUpon>201809040641238_001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809040642091_002.cs" />
+    <Compile Include="Migrations\201809040642091_002.Designer.cs">
+      <DependentUpon>201809040642091_002.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Appointment\Appointment.cs" />
@@ -269,8 +273,11 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809040628523_001.resx">
-      <DependentUpon>201809040628523_001.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809040641238_001.resx">
+      <DependentUpon>201809040641238_001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809040642091_002.resx">
+      <DependentUpon>201809040642091_002.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
