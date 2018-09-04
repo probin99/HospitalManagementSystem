@@ -3,7 +3,7 @@ namespace HospitalManagementSystem.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _008 : DbMigration
+    public partial class _001 : DbMigration
     {
         public override void Up()
         {
