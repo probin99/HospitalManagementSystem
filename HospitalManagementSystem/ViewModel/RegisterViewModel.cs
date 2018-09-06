@@ -15,7 +15,7 @@ namespace HospitalManagementSystem.ViewModel
         [Required(ErrorMessage = "Confirm Password Required")]
         [StringLength(255, ErrorMessage = "Must be between 5 nd 255 characters", MinimumLength = 5)]
         [DataType(DataType.Password)]
-        [Compare(nameof(RegisterViewModel.User.Password))]
+        [Compare("Password", ErrorMessage ="Password and Confirm Password fields do not match")]
         public string ConfirmPassword { get; set; }
     }
 }
