@@ -27,28 +27,28 @@ namespace HospitalManagementSystem.Controllers
             {
                 using (HospitalManagementSystemContext db = new HospitalManagementSystemContext())
                 {
-                    var registertedUser = db.Users.Single(x => x.Email == account.User.Email);
+                    var registertedUser = db.Users.Single(x => x.Email == account.Email);
                     if(registertedUser == null)
                     {
                         UserAccount newUser = new UserAccount()
                         {
-                            FirstName = account.User.FirstName,
-                            LastName = account.User.LastName,
-                            Email = account.User.Email,
-                            MobileNumber = account.User.MobileNumber,
-                            UserName = account.User.UserName,
-                            Password = account.User.Password
+                            FirstName = account.FirstName,
+                            LastName = account.LastName,
+                            Email = account.Email,
+                            MobileNumber = account.MobileNumber,
+                            UserName = account.UserName,
+                            Password = account.Password
                         };
                         db.Users.Add(newUser);
                         db.SaveChanges();
                         //Redirect to login page
-                        ViewBag["RegisteredUser"] = "Congratulations " + account.User.FirstName + ", you are registered with Email: " + account.User.Email;
+                        ViewBag["RegisteredUser"] = "Congratulations " + account.FirstName + ", you are registered with Email: " + account.Email;
                         ViewBag["EmailAreadyRegistered"] = null;
                         return RedirectToAction("Login","Logins");
                     }
                     else
                     {
-                        ViewBag["EmailAreadyRegistered"] = "Sorry, " + account.User.Email + " is already registered";
+                        ViewBag["EmailAreadyRegistered"] = "Sorry, " + account.Email + " is already registered";
                         ViewBag["RegisteredUser"] = null;
                         return View(account);
                     }

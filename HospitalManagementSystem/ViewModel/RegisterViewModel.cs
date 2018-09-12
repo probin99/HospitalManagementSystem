@@ -7,10 +7,8 @@ using System.Web;
 
 namespace HospitalManagementSystem.ViewModel
 {
-    public class RegisterViewModel
+    public class RegisterViewModel:UserAccount
     {
-        public UserAccount User { get; set; }
-
         [Display(Name = "Confirm Password")]
         [Required(ErrorMessage = "Confirm Password Required")]
         [StringLength(255, ErrorMessage = "Must be between 5 nd 255 characters", MinimumLength = 5)]

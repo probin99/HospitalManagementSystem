@@ -1,9 +1,5 @@
 ﻿@model HospitalManagementSystem.ViewModel.RegisterViewModel
 
-<div>
-    <button type="button" onclick="location.href='@Url.Action("Login", "Logins")'" class="btn btn-outline-success my-md-2 my-md-0" style="width:200px;">Back</button>
-</div>
-
 <h2>Register</h2>
 <hr />
 <br />
@@ -31,33 +27,33 @@
 
 
     <div class="col-md-6 mb-0">
-        @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @placeholder = "First Name", @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.User.FirstName, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @placeholder = "First Name", @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
         <br />
     </div>
     <div class="col-md-6 mb-0">
-        @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @placeholder = "Last Name", @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.User.LastName, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @placeholder = "Last Name", @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
         <br />
     </div>
     <div class="col-md-6 mb-0">
-        @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @placeholder = "Email", @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email", @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         <br />
     </div>
     <div class="col-md-6 mb-0">
-        @Html.EditorFor(model => model.User.MobileNumber, new { htmlAttributes = new { @placeholder = "Mobile Number", @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.User.MobileNumber, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @placeholder = "Mobile Number", @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
         <br />
     </div>
     <div class="col-md-6 mb-0">
-        @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @placeholder = "User Name", @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @placeholder = "User Name", @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
         <br />
     </div>
     <div class="col-md-6 mb-0">
-        @Html.EditorFor(model => model.User.Password, new { htmlAttributes = new { @placeholder = "Password", @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @placeholder = "Password", @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         <br />
     </div>
     <div class="col-md-6 mb-0">
