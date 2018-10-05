@@ -15,6 +15,7 @@ namespace HospitalManagementSystem.Controllers
         // GET: Logins
         public ActionResult Login()
         {
+
             LoginViewModel model = new LoginViewModel();
             return View(model);
         }
@@ -30,6 +31,7 @@ namespace HospitalManagementSystem.Controllers
                     var getUserFromDatabase = db.Users.Single(x => x.UserName == user.UserName && x.Password == user.Password);
                     if (getUserFromDatabase != null)
                     {
+
                         Session["UserFound"] = user.UserName;
                         return RedirectToAction("LoggedUser");
                     }

@@ -22,6 +22,7 @@
 
 @using (Html.BeginForm("Index", "Registers", FormMethod.Post))
 {
+
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div class="col-md-6 mb-0">
